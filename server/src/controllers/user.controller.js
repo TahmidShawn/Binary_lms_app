@@ -131,3 +131,24 @@ export const getUserDetails = asyncHandler(async (req, res, next) => {
 	const user = await User.findById(req.user.id);
 	sendToken(user, 200, res, "User found");
 });
+
+// Update user password
+
+export const updatePassword = asyncHandler(async (req, res, next) => {
+	const user = await User.findById(req.user.id).select("+password");
+
+	const isPasswordMatched = await user.comparePassword(req.body.oldPassword);
+
+	if (!isPasswordMatched) {
+		throw new ErrorHandler("Old password is incorrect", 401);
+	}
+
+	if (req.body.newPassword !== req.body.confirmPassword) {
+		throw new ErrorHandler("password does not matched", 401);
+	}
+
+	user.password = req.body.newPassword;
+	await user.save();
+
+	sendToken(user, 200, res, "Password update successfully");
+});

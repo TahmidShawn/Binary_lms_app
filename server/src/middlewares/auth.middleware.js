@@ -9,11 +9,20 @@ export const isAuthenticatedUser = asyncHandler(async (req, res, next) => {
 	if (!token) {
 		throw new ErrorHandler("Please login to access this route", 401);
 	}
-	console.log(token);
 	const decodedData = jwt.verify(token, process.env.JWT_SECRET);
-
-	console.log("decoded", decodedData);
 	req.user = await User.findById(decodedData.id);
 
 	next();
 });
+
+export const authorizeRoles = (...roles) => {
+	return (req, res, next) => {
+		if (!roles.includes(req.user.role)) {
+			throw new ErrorHandler(
+				`Role: ${req.user.role} is not allowed to access this resource`,
+				403
+			);
+		}
+		next();
+	};
+};
