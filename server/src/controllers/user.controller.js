@@ -3,6 +3,7 @@ import asyncHandler from "../middlewares/asyncHandler.js";
 import ErrorHandler from "../utils/errorHandler.js";
 import sendToken from "../utils/sendToken.js";
 import sendEmail from "../utils/sendEmail.js";
+import crypto from "crypto";
 
 // Register User
 export const registerUser = asyncHandler(async (req, res) => {
@@ -94,4 +95,32 @@ export const forgotPassword = asyncHandler(async (req, res, next) => {
 		await user.save({ validateBeforeSave: false });
 		throw new ErrorHandler(error.message, 500);
 	}
+});
+
+// reset password
+
+export const resetPassword = asyncHandler(async (req, res, next) => {
+	const resetPasswordToken = crypto
+		.createHash("sha256")
+		.update(req.params.token)
+		.digest("hex");
+	const user = await User.findOne({
+		resetPasswordToken,
+		resetPasswordExpire: { $gt: Date.now() },
+	});
+	if (!user) {
+		throw new ErrorHandler(
+			"Reset password token is invalid or has been expired",
+			400
+		);
+	}
+	if (req.body.password !== req.body.confirmPassword) {
+		throw new ErrorHandler("Password does not match", 400);
+	}
+	user.password = req.body.password;
+	user.resetPasswordToken = undefined;
+	user.resetPasswordExpire = undefined;
+
+	await user.save();
+	sendToken(user, 200, res, "Password reset successful. You are now logged in");
 });
