@@ -8,8 +8,8 @@ const sendToken = (user, statusCode, res, message) => {
 		),
 		httpOnly: true,
 	};
-	// extract password and role from response
-	const { password, role, ...rest } = user._doc;
+	// extract password from response
+	const { password, ...rest } = user._doc;
 	res.status(statusCode).cookie("token", token, options).json({
 		success: true,
 		message,

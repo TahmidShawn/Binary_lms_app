@@ -159,6 +159,17 @@ export const updateProfile = asyncHandler(async (req, res, next) => {
 	const newUserData = {
 		name: req.body.name,
 	};
+	// Checking role
+	if (req.body.role === "teacher") {
+		newUserData.role = "teacher";
+		newUserData.teacherInfo = {
+			description: req.body.description,
+			image: req.body.image,
+			socialLinks: req.body.socialLinks,
+			numberOfStudents: req.body.numberOfStudents,
+			experience: req.body.experience,
+		};
+	}
 
 	const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
 		new: true,
@@ -168,7 +179,8 @@ export const updateProfile = asyncHandler(async (req, res, next) => {
 
 	res.status(200).json({
 		success: true,
-		message: "updated user profile",
+		message: "User profile updated successfully",
+		user,
 	});
 });
 
