@@ -156,18 +156,33 @@ export const updatePassword = asyncHandler(async (req, res, next) => {
 // Update user Profile
 
 export const updateProfile = asyncHandler(async (req, res, next) => {
+	const {
+		name,
+		role,
+		description,
+		image,
+		socialLinks,
+		numberOfStudents,
+		experience,
+	} = req.body;
+
+	// Validate the role
+	if (role && role !== "user" && role !== "teacher") {
+		throw new ErrorHandler("Invalid role.", 400);
+	}
+
 	const newUserData = {
-		name: req.body.name,
+		name,
 	};
-	// Checking role
-	if (req.body.role === "teacher") {
+
+	if (role === "teacher") {
 		newUserData.role = "teacher";
 		newUserData.teacherInfo = {
-			description: req.body.description,
-			image: req.body.image,
-			socialLinks: req.body.socialLinks,
-			numberOfStudents: req.body.numberOfStudents,
-			experience: req.body.experience,
+			description,
+			image,
+			socialLinks,
+			numberOfStudents,
+			experience,
 		};
 	}
 
@@ -176,6 +191,10 @@ export const updateProfile = asyncHandler(async (req, res, next) => {
 		runValidators: true,
 		useFindAndModify: false,
 	});
+
+	if (!user) {
+		return next(new ErrorHandler("User not found", 404));
+	}
 
 	res.status(200).json({
 		success: true,
