@@ -124,3 +124,10 @@ export const resetPassword = asyncHandler(async (req, res, next) => {
 	await user.save();
 	sendToken(user, 200, res, "Password reset successful. You are now logged in");
 });
+
+// get get User Details
+
+export const getUserDetails = asyncHandler(async (req, res, next) => {
+	const user = await User.findById(req.user.id);
+	sendToken(user, 200, res, "User found");
+});
