@@ -36,7 +36,7 @@ userSchema.pre("save", async function (next) {
 		next();
 	}
 
-	this.password = await hash(this.password, 10);
+	this.password = await bcrypt.hash(this.password, 10);
 });
 
 // jwt token
