@@ -5,6 +5,7 @@ import {
 	SheetTrigger,
 } from "@/components/ui/sheet";
 import { RiMenu2Line } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
 	const navLinks = (
@@ -51,7 +52,12 @@ const Navbar = () => {
 					<div className="flex gap-10">
 						<ul className="flex gap-8 items-center">{navLinks}</ul>
 					</div>
-					<button className="border-[1px] px-6 py-1 border-black">Login</button>
+					<Link
+						to="/auth/register"
+						className="border-[1px] px-6 py-1 border-black"
+					>
+						Login
+					</Link>
 				</div>
 			</nav>
 		</section>
