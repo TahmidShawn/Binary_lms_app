@@ -6,7 +6,7 @@ const TopCourses = () => {
 			<SectionTitle categoryName="Top Courses" categoryLink="/courses" />
 
 			{/* contain section  */}
-			<section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-8 lg:gap-6 mt-8 px-10 md:px-8 lg:px-2">
+			<section className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-6 mt-8 px-4 md:px-6 lg:px-2">
 				{/* card 1 */}
 				<div className="bg-white shadow-[0_4px_12px_-5px_rgba(0,0,0,0.4)] overflow-hidden mx-auto">
 					<div className="">
