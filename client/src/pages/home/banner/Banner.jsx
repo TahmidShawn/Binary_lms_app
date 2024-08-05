@@ -6,7 +6,7 @@ import BannerFrameTopRight from "./BannerFrameTopRight";
 
 const Banner = () => {
 	return (
-		<div className="mt-14">
+		<div className="mt-14 px-2">
 			<div className="flex justify-between items-center flex-col lg:flex-row-reverse">
 				{/* main img */}
 				<div
@@ -27,11 +27,11 @@ const Banner = () => {
 				</div>
 
 				{/* left side info section */}
-				<div className="w-ful lg:w-auto mx-auto lg:mx-0 px-2 lg:px-0 text-center lg:text-left mt-6 lg:mt-0">
+				<div className="w-full lg:w-auto mx-auto lg:mx-0 px-2 lg:px-0 text-center lg:text-left mt-6 lg:mt-0">
 					<h1 className="text-4xl font-bold">
 						Unlock Your Potential <br /> with Binary
 					</h1>
-					<p className="py-6 max-w-xl text-justify">
+					<p className="py-6 max-w-xl text-justify mx-auto w-full">
 						Welcome to Binary, where learning knows no bounds. We believe that
 						education is the key to personal and professional growth, and we are
 						here to guide you on your journey to success.

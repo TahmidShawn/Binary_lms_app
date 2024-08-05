@@ -18,7 +18,7 @@ const Navbar = () => {
 
 	return (
 		<section className="sticky top-0 z-50 inset-x-0 py-3 md:py-3 border-b-[1px] bg-white">
-			<nav className="max-w-screen-xl mx-auto">
+			<nav className="max-w-screen-xl mx-auto px-2">
 				{/* for sm devices */}
 				<div className="inline md:hidden">
 					<Sheet>
