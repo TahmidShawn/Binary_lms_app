@@ -109,18 +109,16 @@ const Testimonials = () => {
 									</svg>
 								</div>
 								<p className="text-sm text-[#333] leading-relaxed">
-									The service was amazing. I never had to wait that long for my
-									food. The staff was friendly and attentive, and the delivery
-									was impressively prompt.
+									{testimonial.message}
 								</p>
 								<div className="flex flex-wrap items-center justify-left mt-6">
 									<img
-										src="https://readymadeui.com/profile_4.webp"
+										src={testimonial.image}
 										className="w-10 h-10 rounded-full"
 									/>
 									<div className="ml-3 text-left">
-										<p className="text-sm font-semibold">Simon Konecki</p>
-										<p className="text-xs text-gray-400">simon23@gmail.com</p>
+										<p className="text-sm font-semibold">{testimonial.name}</p>
+										<p className="text-xs text-gray-400">{testimonial.company}</p>
 									</div>
 								</div>
 							</div>

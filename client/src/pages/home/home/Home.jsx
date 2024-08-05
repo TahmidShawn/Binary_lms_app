@@ -1,4 +1,5 @@
 import Banner from "../banner/Banner";
+import PromotionalBanner from "../promotionalBanner/PromotionalBanner";
 import StatsBanner from "../statsBanner/StatsBanner";
 import Testimonials from "../testimonials/Testimonials";
 import TopCourses from "../topCourses/TopCourses";
@@ -16,6 +17,9 @@ const Home = () => {
 				<TopInstructors />
 			</div>
 			<Testimonials />
+			<div className="max-w-screen-xl mx-auto">
+				<PromotionalBanner />
+			</div>
 		</div>
 	);
 };
