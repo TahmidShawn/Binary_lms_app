@@ -1,5 +1,6 @@
 import Banner from "../banner/Banner";
 import StatsBanner from "../statsBanner/StatsBanner";
+import Testimonials from "../testimonials/Testimonials";
 import TopCourses from "../topCourses/TopCourses";
 import TopInstructors from "../topInstructors/TopInstructors";
 
@@ -14,6 +15,7 @@ const Home = () => {
 				<TopCourses />
 				<TopInstructors />
 			</div>
+			<Testimonials />
 		</div>
 	);
 };
