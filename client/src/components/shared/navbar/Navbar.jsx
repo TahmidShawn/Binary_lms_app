@@ -4,10 +4,13 @@ import {
 	SheetHeader,
 	SheetTrigger,
 } from "@/components/ui/sheet";
+import useAuthStatus from "@/hooks/useAuthStatus";
 import { RiMenu2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+	const { user, loading } = useAuthStatus();
+
 	const navLinks = (
 		<>
 			<li>Home</li>
@@ -52,12 +55,18 @@ const Navbar = () => {
 					<div className="flex gap-10">
 						<ul className="flex gap-8 items-center">{navLinks}</ul>
 					</div>
-					<Link
-						to="/auth/register"
-						className="border-[1px] px-6 py-1 border-black"
-					>
-						Login
-					</Link>
+					{user ? (
+						<button className="border-[1px] px-6 py-1 border-black">
+							Logout
+						</button>
+					) : (
+						<Link
+							to="/auth/register"
+							className="border-[1px] px-6 py-1 border-black"
+						>
+							Login
+						</Link>
+					)}
 				</div>
 			</nav>
 		</section>

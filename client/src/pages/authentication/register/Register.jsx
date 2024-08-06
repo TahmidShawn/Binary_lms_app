@@ -5,31 +5,13 @@ import { HiOutlineMail } from "react-icons/hi";
 import { FiEye } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
-import useAxiosPublic from "@/hooks/useAxiosPublic";
-import { useState } from "react";
-import { toast } from "sonner";
+import useFormSubmit from "@/hooks/useFormSubmit";
 
 const Register = () => {
 	const { register, handleSubmit, reset } = useForm();
-	const axiosPublic = useAxiosPublic();
-
-	const [loading, setLoading] = useState(false);
-
-	const onSubmit = async (data) => {
-		setLoading(true);
-		try {
-			const response = await axiosPublic.post("/api/v1/register", data);
-			const successMessage =
-				response?.data?.message || "Registration successful";
-			toast.success(successMessage);
-			reset();
-		} catch (error) {
-			const errorMessage =
-				error.response?.data?.message || "Registration error";
-			toast.error(errorMessage);
-		} finally {
-			setLoading(false);
-		}
+	const { submitForm, loading } = useFormSubmit("/api/v1/register");
+	const onSubmit = (data) => {
+		submitForm(data, reset);
 	};
 
 	return (
