@@ -49,12 +49,6 @@ const Navbar = () => {
 									Login
 								</Link>
 							)}
-							<Link
-								to="/auth/register"
-								className="border-[1px] px-6 py-1 border-black"
-							>
-								Login
-							</Link>
 						</div>
 						<SheetContent>
 							<SheetHeader>

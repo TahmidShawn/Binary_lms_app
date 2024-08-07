@@ -31,14 +31,15 @@ const useAuth = () => {
 	};
 
 	// login user
-	const loginUser = async (credentials) => {
+	const loginUser = async (userData, reset) => {
 		setLoading(true);
 		try {
-			const response = await axiosPublic.post("/api/v1/login", credentials);
+			const response = await axiosPublic?.post("/api/v1/login", userData);
 			setAuthState({
 				isAuthenticated: true,
 				user: response.data.user,
 			});
+			reset();
 		} catch (error) {
 			toast.error(error.response?.data?.message || "Operation error");
 		} finally {
@@ -50,11 +51,12 @@ const useAuth = () => {
 	const logoutUser = async () => {
 		setLoading(true);
 		try {
-			await axiosPublic.get("/api/v1/logout");
+			const response = await axiosPublic.get("/api/v1/logout");
 			setAuthState({
 				isAuthenticated: false,
 				user: null,
 			});
+			toast.success(response?.data?.message || "Operation successful");
 		} catch (error) {
 			toast.error(error.response?.data?.message || "Operation error");
 		} finally {

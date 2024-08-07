@@ -15,7 +15,7 @@ const Footer = () => {
 					<ul className="space-y-4">
 						<li>
 							<a
-								href="javascript:void(0)"
+								href="#"
 								className="text-gray-500 hover:text-gray-800 text-[15px]"
 							>
 								Web Development
@@ -23,7 +23,7 @@ const Footer = () => {
 						</li>
 						<li>
 							<a
-								href="javascript:void(0)"
+								href="#"
 								className="text-gray-500 hover:text-gray-800 text-[15px]"
 							>
 								Mobile App Development
@@ -31,7 +31,7 @@ const Footer = () => {
 						</li>
 						<li>
 							<a
-								href="javascript:void(0)"
+								href="#"
 								className="text-gray-500 hover:text-gray-800 text-[15px]"
 							>
 								UI/UX Design
@@ -39,7 +39,7 @@ const Footer = () => {
 						</li>
 						<li>
 							<a
-								href="javascript:void(0)"
+								href="#"
 								className="text-gray-500 hover:text-gray-800 text-[15px]"
 							>
 								Digital Marketing
@@ -53,7 +53,7 @@ const Footer = () => {
 					<ul className="space-y-4">
 						<li>
 							<a
-								href="javascript:void(0)"
+								href="#"
 								className="text-gray-500 hover:text-gray-800 text-[15px]"
 							>
 								Webinars
@@ -61,7 +61,7 @@ const Footer = () => {
 						</li>
 						<li>
 							<a
-								href="javascript:void(0)"
+								href="#"
 								className="text-gray-500 hover:text-gray-800 text-[15px]"
 							>
 								Ebooks
@@ -69,7 +69,7 @@ const Footer = () => {
 						</li>
 						<li>
 							<a
-								href="javascript:void(0)"
+								href="#"
 								className="text-gray-500 hover:text-gray-800 text-[15px]"
 							>
 								Templates
@@ -77,7 +77,7 @@ const Footer = () => {
 						</li>
 						<li>
 							<a
-								href="javascript:void(0)"
+								href="#"
 								className="text-gray-500 hover:text-gray-800 text-[15px]"
 							>
 								Tutorials
@@ -91,7 +91,7 @@ const Footer = () => {
 					<ul className="space-y-4">
 						<li>
 							<a
-								href="javascript:void(0)"
+								href="#"
 								className="text-gray-500 hover:text-gray-800 text-[15px]"
 							>
 								Our Story
@@ -99,7 +99,7 @@ const Footer = () => {
 						</li>
 						<li>
 							<a
-								href="javascript:void(0)"
+								href="#"
 								className="text-gray-500 hover:text-gray-800 text-[15px]"
 							>
 								Mission and Values
@@ -107,7 +107,7 @@ const Footer = () => {
 						</li>
 						<li>
 							<a
-								href="javascript:void(0)"
+								href="#"
 								className="text-gray-500 hover:text-gray-800 text-[15px]"
 							>
 								Team
@@ -115,7 +115,7 @@ const Footer = () => {
 						</li>
 						<li>
 							<a
-								href="javascript:void(0)"
+								href="#"
 								className="text-gray-500 hover:text-gray-800 text-[15px]"
 							>
 								Testimonials
