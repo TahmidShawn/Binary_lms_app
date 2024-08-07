@@ -4,12 +4,13 @@ import {
 	SheetHeader,
 	SheetTrigger,
 } from "@/components/ui/sheet";
-import useAuthStatus from "@/hooks/useAuthStatus";
+import useAuthContext from "@/hooks/useAuthContext";
+
 import { RiMenu2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-	const { user, loading } = useAuthStatus();
+	const { isAuthenticated } = useAuthContext();
 
 	const navLinks = (
 		<>
@@ -30,10 +31,27 @@ const Navbar = () => {
 							<SheetTrigger className="text-2xl">
 								<RiMenu2Line />
 							</SheetTrigger>
-
-							<button className="border-[1px] px-6 py-1 border-black">
+							{isAuthenticated ? (
+								<button
+									// onClick={handleLogout}
+									className="border-[1px] px-6 py-1 border-black"
+								>
+									Logout
+								</button>
+							) : (
+								<Link
+									to="/auth/register"
+									className="border-[1px] px-6 py-1 border-black"
+								>
+									Login
+								</Link>
+							)}
+							<Link
+								to="/auth/register"
+								className="border-[1px] px-6 py-1 border-black"
+							>
 								Login
-							</button>
+							</Link>
 						</div>
 						<SheetContent>
 							<SheetHeader>
@@ -55,8 +73,11 @@ const Navbar = () => {
 					<div className="flex gap-10">
 						<ul className="flex gap-8 items-center">{navLinks}</ul>
 					</div>
-					{user ? (
-						<button className="border-[1px] px-6 py-1 border-black">
+					{isAuthenticated ? (
+						<button
+							// onClick={handleLogout}
+							className="border-[1px] px-6 py-1 border-black"
+						>
 							Logout
 						</button>
 					) : (

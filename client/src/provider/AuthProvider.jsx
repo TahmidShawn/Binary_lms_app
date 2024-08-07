@@ -1,81 +1,43 @@
 /* eslint-disable react/prop-types */
-import { createContext, useEffect, useState } from "react";
-import {
-  GoogleAuthProvider,
-  createUserWithEmailAndPassword,
-  getAuth,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  signInWithPopup,
-  signOut,
-  updateProfile,
-} from "firebase/auth";
-import app from "../firebase/firebase.config";
+import { createContext, useState, useEffect } from "react";
+import useAxiosPublic from "@/hooks/useAxiosPublic";
 
-export const AuthContext = createContext(null);
-const auth = getAuth(app);
-const googleProvider = new GoogleAuthProvider();
+const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+	const axiosPublic = useAxiosPublic();
+	const [authState, setAuthState] = useState({
+		isAuthenticated: false,
+		user: null,
+		loading: false,
+	});
 
-  // register user via email password
-  const createUser = (email, password) => {
-    setLoading(true);
-    return createUserWithEmailAndPassword(auth, email, password);
-  };
+	const checkAuthStatus = async () => {
+		try {
+			const response = await axiosPublic.get("/api/v1/me");
+			setAuthState({
+				isAuthenticated: true,
+				user: response.data.user,
+				loading: true,
+			});
+		} catch (error) {
+			setAuthState({
+				isAuthenticated: false,
+				user: null,
+				loading: false,
+			});
+		}
+	};
 
-  // user login via email password
-  const logInUser = (email, password) => {
-    setLoading(true);
-    return signInWithEmailAndPassword(auth, email, password);
-  };
+	useEffect(() => {
+		checkAuthStatus();
+	}, []);
 
-  // google logIn
-  const googleLogin = () => {
-    setLoading(true);
-    return signInWithPopup(auth, googleProvider);
-  };
-
-  // user logOut
-  const logOut = () => {
-    setLoading(true);
-    return signOut(auth);
-  };
-
-  // user  update
-  const updateUserProfile = (name, photo) => {
-    return updateProfile(auth.currentUser, {
-      displayName: name,
-      photoURL: photo,
-    });
-  };
-  // handle state change
-
-  useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      setLoading(false);
-    });
-    return () => {
-      unSubscribe();
-    };
-  }, []);
-
-  const authInfo = {
-    createUser,
-    logInUser,
-    googleLogin,
-    logOut,
-    updateUserProfile,
-    user,
-    loading,
-  };
-
-  return (
-    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
-  );
+	return (
+		<AuthContext.Provider value={{ authState, setAuthState }}>
+			{children}
+		</AuthContext.Provider>
+	);
 };
 
-export default AuthProvider;
+export { AuthContext, AuthProvider };
