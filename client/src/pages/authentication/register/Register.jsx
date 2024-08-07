@@ -5,11 +5,10 @@ import { HiOutlineMail } from "react-icons/hi";
 import { FiEye } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
-// import useFormSubmit from "@/hooks/useFormSubmit";
 import useAuth from "@/hooks/useAuth";
 
 const Register = () => {
-	const { registerUser } = useAuth();
+	const { registerUser, loading } = useAuth();
 
 	const {
 		register,
@@ -120,8 +119,9 @@ const Register = () => {
 						<button
 							type="submit"
 							className="w-full py-2.5 px-4 text-sm tracking-wide rounded-md bg-blue-600 hover:bg-blue-700 text-white focus:outline-none"
+							disabled={loading}
 						>
-							Register
+							{loading ? "Registering..." : "Register"}
 						</button>
 					</div>
 

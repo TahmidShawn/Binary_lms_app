@@ -1,55 +1,75 @@
-import axios from "axios";
+import { useContext, useState } from "react";
 import useAxiosPublic from "./useAxiosPublic";
 import { toast } from "sonner";
-import useAuthContext from "./useAuthContext";
+import { AuthContext } from "@/provider/AuthProvider";
 
 const useAuth = () => {
-	const { setAuthState } = useAuthContext();
 	const axiosPublic = useAxiosPublic();
+	const [loading, setLoading] = useState(false);
 
-	const login = async (credentials) => {
-		try {
-			const response = await axios.post("/api/v1/login", credentials);
-			setAuthState({
-				isAuthenticated: true,
-				user: response.data.user,
-				loading: true,
-			});
-		} catch (error) {
-			console.error("Login failed", error);
-		}
-	};
+	const {
+		setAuthState,
+		authState: { isAuthenticated, user },
+	} = useContext(AuthContext);
 
-	const logout = async () => {
-		try {
-			await axios.get("/api/v1/logout");
-			setAuthState({
-				isAuthenticated: false,
-				user: null,
-				loading: true,
-			});
-		} catch (error) {
-			console.error("Logout failed", error);
-		}
-	};
-
+	// register user
 	const registerUser = async (userData, reset) => {
+		setLoading(true);
 		try {
 			const response = await axiosPublic?.post("/api/v1/register", userData);
 			setAuthState({
 				isAuthenticated: true,
 				user: response.data.user,
-				loading: true,
 			});
 			toast.success(response?.data?.message || "Operation successful");
 			reset();
 		} catch (error) {
-			console.error("Registration failed", error);
 			toast.error(error.response?.data?.message || "Operation error");
+		} finally {
+			setLoading(false);
 		}
 	};
 
-	return { login, logout, registerUser };
+	// login user
+	const loginUser = async (credentials) => {
+		setLoading(true);
+		try {
+			const response = await axiosPublic.post("/api/v1/login", credentials);
+			setAuthState({
+				isAuthenticated: true,
+				user: response.data.user,
+			});
+		} catch (error) {
+			toast.error(error.response?.data?.message || "Operation error");
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	// logout user
+	const logoutUser = async () => {
+		setLoading(true);
+		try {
+			await axiosPublic.get("/api/v1/logout");
+			setAuthState({
+				isAuthenticated: false,
+				user: null,
+			});
+		} catch (error) {
+			toast.error(error.response?.data?.message || "Operation error");
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	return {
+		isAuthenticated,
+		user,
+		loading,
+		registerUser,
+		loginUser,
+		logoutUser,
+	};
 };
 
 export default useAuth;

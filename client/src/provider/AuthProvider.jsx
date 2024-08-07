@@ -9,7 +9,6 @@ const AuthProvider = ({ children }) => {
 	const [authState, setAuthState] = useState({
 		isAuthenticated: false,
 		user: null,
-		loading: false,
 	});
 
 	const checkAuthStatus = async () => {
@@ -18,13 +17,11 @@ const AuthProvider = ({ children }) => {
 			setAuthState({
 				isAuthenticated: true,
 				user: response.data.user,
-				loading: true,
 			});
 		} catch (error) {
 			setAuthState({
 				isAuthenticated: false,
 				user: null,
-				loading: false,
 			});
 		}
 	};

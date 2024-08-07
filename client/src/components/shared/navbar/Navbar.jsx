@@ -4,20 +4,23 @@ import {
 	SheetHeader,
 	SheetTrigger,
 } from "@/components/ui/sheet";
-import useAuthContext from "@/hooks/useAuthContext";
+import useAuth from "@/hooks/useAuth";
 
 import { RiMenu2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-	const { isAuthenticated } = useAuthContext();
+	const { isAuthenticated, logoutUser } = useAuth();
+	const handleLogout = async () => {
+		await logoutUser();
+	};
 
 	const navLinks = (
 		<>
 			<li>Home</li>
 			<li>About</li>
 			<li>Categories</li>
-			<li>Teacher</li>
+			<li>Any</li>
 		</>
 	);
 
@@ -33,7 +36,7 @@ const Navbar = () => {
 							</SheetTrigger>
 							{isAuthenticated ? (
 								<button
-									// onClick={handleLogout}
+									onClick={handleLogout}
 									className="border-[1px] px-6 py-1 border-black"
 								>
 									Logout
@@ -75,7 +78,7 @@ const Navbar = () => {
 					</div>
 					{isAuthenticated ? (
 						<button
-							// onClick={handleLogout}
+							onClick={handleLogout}
 							className="border-[1px] px-6 py-1 border-black"
 						>
 							Logout
