@@ -87,6 +87,10 @@ const useAuth = () => {
 				`/api/v1/password/reset/${token}`,
 				data
 			);
+			setAuthState({
+				isAuthenticated: true,
+				user: response.data.user,
+			});
 			toast.success(response?.data?.message || "Password reset successful");
 			return true;
 		} catch (error) {

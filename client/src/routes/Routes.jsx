@@ -5,6 +5,8 @@ import Register from "@/pages/authentication/register/Register";
 import Login from "@/pages/authentication/login/Login";
 import Error from "@/pages/error/Error";
 import ResetPassword from "@/pages/authentication/resetPassword/ResetPassword";
+import Dashboard from "@/pages/dashboard/dashboard/Dashboard";
+import AllCourses from "@/pages/dashboard/allCourses/AllCourses";
 
 const Routes = createBrowserRouter([
 	{
@@ -27,6 +29,16 @@ const Routes = createBrowserRouter([
 			{
 				path: "/password/reset/:token",
 				element: <ResetPassword />,
+			},
+		],
+	},
+	{
+		path: "/dashboard",
+		element: <Dashboard />,
+		children: [
+			{
+				path: "all-courses",
+				element: <AllCourses />,
 			},
 		],
 	},
