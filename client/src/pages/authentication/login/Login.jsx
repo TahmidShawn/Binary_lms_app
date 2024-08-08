@@ -5,6 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
 import useAuth from "@/hooks/useAuth";
 import usePasswordToggle from "@/hooks/usePasswordToggle";
+import ForgotPassword from "../forgotPassword/ForgotPassword";
 
 const Login = () => {
 	const { loginUser, loading } = useAuth();
@@ -62,7 +63,6 @@ const Login = () => {
 									},
 								})}
 								type="text"
-								required
 								className="w-full text-sm text-gray-800 border-b border-gray-300 focus:border-blue-600 px-2 py-3 outline-none"
 								placeholder="Enter email"
 							/>
@@ -87,7 +87,6 @@ const Login = () => {
 									},
 								})}
 								type={passwordInputType}
-								required
 								className="w-full text-sm text-gray-800 border-b border-gray-300 focus:border-blue-600 px-2 py-3 outline-none"
 								placeholder="Enter password"
 							/>
@@ -118,14 +117,15 @@ const Login = () => {
 								Remember me
 							</label>
 						</div>
-						<div>
+						{/* <div>
 							<a
 								href="#"
 								className="text-blue-600 font-semibold text-sm hover:underline"
 							>
 								Forgot Password?
 							</a>
-						</div>
+						</div> */}
+						<ForgotPassword />
 					</div>
 
 					<div className="mt-12">
