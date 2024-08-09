@@ -1,15 +1,15 @@
-import {
-	Bell,
-	CircleUser,
-	Home,
-	LineChart,
-	Menu,
-	Package,
-	Package2,
-	Search,
-	ShoppingCart,
-	Users,
-} from "lucide-react";
+import { LuHome } from "react-icons/lu";
+import { TbUserEdit } from "react-icons/tb";
+import { MdOutlineDashboard } from "react-icons/md";
+import { FiShoppingCart } from "react-icons/fi";
+import { AiOutlineFileDone } from "react-icons/ai";
+import { SlPeople } from "react-icons/sl";
+import { GoGraph } from "react-icons/go";
+import { GoBell } from "react-icons/go";
+import { FaRegUserCircle } from "react-icons/fa";
+import { FiSearch } from "react-icons/fi";
+import { FiMenu } from "react-icons/fi";
+
 import { Button } from "@/components/ui/button";
 
 import {
@@ -28,38 +28,52 @@ const Dashboard = () => {
 	const navLinks = (
 		<>
 			<Link
-				href="#"
+				to="/"
 				className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
 			>
-				<Home className="h-4 w-4" />
+				<LuHome className="h-4 w-4" />
+				Home
+			</Link>
+			<Link
+				to="/dashboard"
+				className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+			>
+				<MdOutlineDashboard className="h-4 w-4" />
 				Dashboard
 			</Link>
 			<Link
-				href="#"
+				to="/dashboard/edit-profile"
 				className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
 			>
-				<ShoppingCart className="h-4 w-4" />
-				Orders
+				<TbUserEdit className="h-4 w-4" />
+				Edit Profile
 			</Link>
 			<Link
-				to="/dashboard/all-courses"
-				className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
-			>
-				<Package className="h-4 w-4" />
-				All Courses
-			</Link>
-			<Link
-				href="#"
+				to="/dashboard/purchased-courses"
 				className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
 			>
-				<Users className="h-4 w-4" />
-				Customers
+				<FiShoppingCart className="h-4 w-4" />
+				My Purchased Courses
 			</Link>
 			<Link
-				href="#"
+				to="/dashboard/published-courses"
 				className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
 			>
-				<LineChart className="h-4 w-4" />
+				<AiOutlineFileDone className="h-4 w-4" />
+				My Published Courses
+			</Link>
+			<Link
+				to="/dashboard/my-teachers"
+				className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+			>
+				<SlPeople className="h-4 w-4" />
+				My Teachers
+			</Link>
+			<Link
+				to="/dashboard/analytics"
+				className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+			>
+				<GoGraph className="h-4 w-4" />
 				Analytics
 			</Link>
 		</>
@@ -70,11 +84,10 @@ const Dashboard = () => {
 				<div className="flex h-full max-h-screen flex-col gap-2">
 					<div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
 						<Link href="/" className="flex items-center gap-2 font-semibold">
-							<Package2 className="h-6 w-6" />
-							<span className="">Acme Inc</span>
+							<span className="">Binary</span>
 						</Link>
 						<Button variant="outline" size="icon" className="ml-auto h-8 w-8">
-							<Bell className="h-4 w-4" />
+							<GoBell className="h-4 w-4" />
 							<span className="sr-only">Toggle notifications</span>
 						</Button>
 					</div>
@@ -94,7 +107,7 @@ const Dashboard = () => {
 								size="icon"
 								className="shrink-0 md:hidden"
 							>
-								<Menu className="h-5 w-5" />
+								<FiMenu className="h-5 w-5" />
 								<span className="sr-only">Toggle navigation menu</span>
 							</Button>
 						</SheetTrigger>
@@ -102,10 +115,10 @@ const Dashboard = () => {
 							<nav className="grid gap-2 text-lg font-medium">{navLinks}</nav>
 						</SheetContent>
 					</Sheet>
-					<div className="w-full flex-1">
-						<form>
+					<div className="w-full flex-1 ">
+						<form className="flex-1">
 							<div className="relative">
-								<Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+								<FiSearch className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
 								<Input
 									type="search"
 									placeholder="Search products..."
@@ -117,7 +130,7 @@ const Dashboard = () => {
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild>
 							<Button variant="secondary" size="icon" className="rounded-full">
-								<CircleUser className="h-5 w-5" />
+								<FaRegUserCircle className="h-5 w-5" />
 								<span className="sr-only">Toggle user menu</span>
 							</Button>
 						</DropdownMenuTrigger>

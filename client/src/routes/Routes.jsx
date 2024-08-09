@@ -6,7 +6,9 @@ import Login from "@/pages/authentication/login/Login";
 import Error from "@/pages/error/Error";
 import ResetPassword from "@/pages/authentication/resetPassword/ResetPassword";
 import Dashboard from "@/pages/dashboard/dashboard/Dashboard";
-import AllCourses from "@/pages/dashboard/allCourses/AllCourses";
+import MyPurchasedCourses from "@/pages/dashboard/students/myPurchasedCourses/MyPurchasedCourses";
+import MyTeachers from "@/pages/dashboard/students/myTeachers/MyTeachers";
+import Category from "@/pages/category/category/Category";
 
 const Routes = createBrowserRouter([
 	{
@@ -30,6 +32,10 @@ const Routes = createBrowserRouter([
 				path: "/password/reset/:token",
 				element: <ResetPassword />,
 			},
+			{
+				path: "/category",
+				element: <Category />,
+			},
 		],
 	},
 	{
@@ -37,8 +43,12 @@ const Routes = createBrowserRouter([
 		element: <Dashboard />,
 		children: [
 			{
-				path: "all-courses",
-				element: <AllCourses />,
+				path: "purchased-courses",
+				element: <MyPurchasedCourses />,
+			},
+			{
+				path: "my-teachers",
+				element: <MyTeachers />,
 			},
 		],
 	},

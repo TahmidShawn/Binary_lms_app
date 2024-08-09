@@ -7,7 +7,7 @@ import {
 import useAuth from "@/hooks/useAuth";
 
 import { RiMenu2Line } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
 	const { isAuthenticated, logoutUser } = useAuth();
@@ -20,7 +20,16 @@ const Navbar = () => {
 			<li>Home</li>
 			<li>About</li>
 			<li>Categories</li>
-			<li>Any</li>
+			<li>
+				<NavLink
+					to="/dashboard"
+					className={({ isActive, isPending }) =>
+						isPending ? "pending" : isActive ? "active" : ""
+					}
+				>
+					Dashboard
+				</NavLink>
+			</li>
 		</>
 	);
 
